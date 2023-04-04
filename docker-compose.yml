@@ -2,8 +2,15 @@ version: '3.6'
 
 services:
   chatgpt:
-    build: .
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - NEXT_PUBLIC_MSAL_TENANT_ID=***
+        - NEXT_PUBLIC_MSAL_CLIENT_ID=***
+        - NEXT_PUBLIC_MSAL_REDIRECT_URL=***
+    restart: unless-stopped
     ports:
       - 3000:3000
     environment:
-      - 'OPENAI_API_KEY='
+      - OPENAI_API_KEY=***
